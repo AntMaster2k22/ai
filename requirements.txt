@@ -7,3 +7,4 @@ requests
 scikit-learn
 sentence-transformers
 trafilatura
+pyarrow

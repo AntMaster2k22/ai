@@ -1,17 +1,24 @@
 import trafilatura
 from requests.exceptions import RequestException
 
-def scrape_text_from_url(url: str) -> str:
+def scrape_text_from_url(url: str, silent: bool = False) -> str:
     """
     Scrapes the main text content from a URL using trafilatura.
     Returns the text as a single string, or an empty string on failure.
+    
+    Args:
+        url: The URL to scrape.
+        silent: If True, suppresses print statements for cleaner autonomous runs.
     """
-    print(f"[*] Scraping: {url}")
+    if not silent:
+        print(f"[*] Scraping: {url}")
+        
     try:
         # Download the page's content
         downloaded = trafilatura.fetch_url(url)
         if downloaded is None:
-            print(f"[!] Failed to download content from {url}")
+            if not silent:
+                print(f"[!] Failed to download content from {url}")
             return ""
         
         # Extract the main text, excluding comments, tables, and reducing duplication
@@ -23,17 +30,20 @@ def scrape_text_from_url(url: str) -> str:
         )
         
         if text:
-            print(f"[✓] Successfully scraped text from {url}")
+            if not silent:
+                print(f"[✓] Successfully scraped text from {url}")
             # Join lines to create a single block of text
             return '\n'.join(text.splitlines())
         else:
-            print(f"[!] No main text could be extracted from {url}")
+            if not silent:
+                print(f"[!] No main text could be extracted from {url}")
             return ""
             
     except RequestException as e:
-        print(f"[!] Request failed for {url}: {e}")
+        if not silent:
+            print(f"[!] Request failed for {url}: {e}")
         return ""
     except Exception as e:
-        print(f"[!] An unexpected error occurred while scraping {url}: {e}")
+        if not silent:
+            print(f"[!] An unexpected error occurred while scraping {url}: {e}")
         return ""
-

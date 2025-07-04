@@ -1,105 +1,82 @@
 import os
 import sys
-from my_scraper import scrape_text_from_url
-from embedder import embed_text
+
+# Add the parent directory to the path to allow for package-like imports
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+# --- Project Imports ---
+from model import predict_with_confidence
 from memory import Memory
-from model import predict_with_confidence, maybe_auto_label
-from config import AUTO_LABELED_CSV, CONFIDENCE_THRESHOLD
+from embedder import embed_text
+from learn import train_model
 
-def learn_from_url():
-    """Scrapes a URL, classifies its content, and adds it to memory."""
-    memory = Memory()
-    url = input("Enter a URL to learn from: ")
-    if not url:
-        return
-
-    print(f"\n[+] Scraping text from {url}...")
-    text = scrape_text_from_url(url)
-    if not text:
-        print("[!] No text could be scraped. Aborting.")
-        return
-
-    print("[+] Scraped text. Embedding...")
-    vector = embed_text(text)
-    
-    print("[+] Embedded. Classifying...")
-    try:
-        category, confidence = predict_with_confidence(text)
-        print(f"[🧠] Model prediction: {category} (confidence: {confidence:.2f})")
-        maybe_auto_label(text[:1000], category, confidence)
-    except Exception as e:
-        print(f"[!] Model prediction failed: {e}")
-        category = "unknown"
-        confidence = 0.0
-
-    print("[+] Saving to memory...")
-    metadata = {
-        "url": url,
-        "text_snippet": text[:500],
-        "predicted_category": category,
-        "confidence": round(confidence, 2)
-    }
-    memory.add(vector, metadata)
-    print("[✓] Knowledge added to memory.")
+# Import the new, correct functions
+from curate_knowledge import curate_knowledge_session 
+from autonomous_learn import run_autonomous_session
 
 def chat():
     """
-    Initiates a chat session. If memory is populated, it queries the memory.
-    If memory is empty, it uses the classification model directly on the query.
+    Initiates a conversational chat session.
     """
     memory = Memory()
     has_memory = memory.index.ntotal > 0
 
     if has_memory:
-        print("\n--- Chat with your Knowledge Base --- (type 'exit' to return to menu)")
+        print("\n--- Chat with your AI --- (type 'exit' to quit)")
+        print("AI: Hello! I'm ready to answer questions based on what I've learned.")
     else:
-        print("\n--- Chat with your Classifier --- (Memory is empty)")
-        print("I can classify your text. Ask me anything! (type 'exit' to return to menu)")
+        print("\n--- Chat with your AI --- (Memory is empty)")
+        print("AI: My memory is currently empty, but you can still ask me to classify text.")
 
     while True:
         try:
-            query = input("🧠 You: ")
+            query = input("You: ")
         except (EOFError, KeyboardInterrupt):
-            print("\n\n--- Exiting chat. ---")
+            print("\n\nAI: Goodbye!")
             break
 
         if query.lower() in ["exit", "quit"]:
+            print("AI: Goodbye!")
             break
         if not query.strip():
             continue
 
-        if has_memory:
-            # Query the existing knowledge base
-            q_vector = embed_text(query)
-            results = memory.query(q_vector, k=1)
+        try:
+            predicted_category, confidence = predict_with_confidence(query)
+            print(f"AI: (Thinking... Looks like this is about '{predicted_category}')")
 
-            if not results:
-                print("⚠️ Nothing found in memory that matches your query.")
-                continue
+            if has_memory:
+                q_vector = embed_text(query)
+                results = memory.query(q_vector, k=1)
 
-            best = results[0]
-            print(f"\n🔎 Top Result from Memory:")
-            print(f"🌐 URL: {best.get('url', 'N/A')}")
-            print(f"📁 Topic: {best.get('predicted_category', 'unknown')} (Confidence: {best.get('confidence', 'N/A')})")
-            print(f"💬 Snippet: {best.get('text_snippet', '')}...\n")
-        else:
-            # Use the classifier directly on the user's query
-            try:
-                category, confidence = predict_with_confidence(query)
-                print(f"\n[CLASSIFICATION]")
-                print(f"💬 I think your query is about: '{category}'")
-                print(f"Confidence: {confidence:.2f}\n")
-            except Exception as e:
-                print(f"[!] Could not classify your query: {e}")
+                if results:
+                    best_match = results[0]
+                    response = (
+                        f"That's an interesting question about {predicted_category}.\n\n"
+                        f"I found something in my memory that seems related, from this URL: {best_match.get('url', 'N/A')}\n"
+                        f"It says: \"{best_match.get('text_snippet', 'No snippet available.')}...\"\n\n"
+                        f"Does this help answer your question?"
+                    )
+                    print(f"AI: {response}")
+                else:
+                    print(f"AI: I understand you're asking about {predicted_category}, but I couldn't find a specific document in my memory that matches your query.")
+            else:
+                print(f"AI: My memory is empty, but I can tell you that your query seems to be about '{predicted_category}' with a confidence of {confidence:.2f}.")
+
+        except Exception as e:
+            print(f"[!] An error occurred during the chat session: {e}")
 
 
 def main_menu():
     """Displays the main menu and handles user choices."""
     while True:
         print("\n--- Local Semantic AI ---")
-        print("1. Learn from a new URL")
-        print("2. Chat with your AI")
-        print("3. Exit")
+        print("1. Curate new knowledge (Guided Mode)")
+        print("2. Run Autonomous Learning Session")
+        print("3. Chat with your AI")
+        print("4. Run Data Doctor (Health Check)")
+        print("5. Manually retrain model")
+        print("6. Exit")
         
         try:
             choice = input("> ")
@@ -108,14 +85,29 @@ def main_menu():
             break
 
         if choice == '1':
-            learn_from_url()
+            from curate_knowledge import curate_knowledge_session
+            curate_knowledge_session()
         elif choice == '2':
-            chat()
+            from autonomous_learn import run_autonomous_session
+            run_autonomous_session()
         elif choice == '3':
+            chat()
+        elif choice == '4':
+            from data_doctor import run_data_checkup
+            run_data_checkup()
+        elif choice == '5':
+            print("[*] Manually starting the training process...")
+            from learn import train_model
+            train_model()
+        elif choice == '6':
             print("Goodbye!")
             break
         else:
             print("[!] Invalid choice, please try again.")
 
+
 if __name__ == "__main__":
+    # Ensure the 'data' and 'models' directories exist
+    os.makedirs('data', exist_ok=True)
+    os.makedirs('models', exist_ok=True)
     main_menu()
