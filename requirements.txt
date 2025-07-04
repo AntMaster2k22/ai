@@ -1,0 +1,9 @@
+beautifulsoup4
+faiss-cpu
+joblib
+numpy
+pandas
+requests
+scikit-learn
+sentence-transformers
+trafilatura

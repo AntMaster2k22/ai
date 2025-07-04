@@ -1,0 +1,939 @@
+performance art
+street art
+art deco
+digital art
+public art installations
+contemporary dance
+Bauhaus
+Impressionism
+Surrealism
+Cubism
+Abstract expressionism
+Pop art
+Minimalism
+Conceptual art
+Performance painting
+Graffiti art
+Video art
+Sound art
+Land art
+Installation art
+Kinetic art
+Fluxus
+Neo-Expressionism
+Digital sculpture
+Augmented reality art
+Generative art
+BioArt
+Tattoo art
+Calligraphy
+Muralism
+Graffiti lettering
+Comic book art
+Animation
+Motion graphics
+Mixed media art
+Textile art
+Fiber art
+Ceramic art
+Glass art
+Metalworking
+Woodworking
+Jewelry design
+Fashion illustration
+Costume design
+Set design
+Stage lighting
+Scenography
+Theatre directing
+Playwriting
+Screenwriting
+Literary criticism
+Poetry slam
+Spoken word poetry
+Epic poetry
+Haiku
+Sonnet
+Free verse
+Prose poetry
+Narrative poetry
+Metaphysical poetry
+Beat poetry
+Romantic poetry
+Modernist poetry
+Postcolonial literature
+Magical realism
+Gothic fiction
+Science fiction
+Cyberpunk
+Steampunk
+Space opera
+Detective fiction
+Noir
+Psychological thriller
+Legal thriller
+Political satire
+Social realism
+Documentary film
+Experimental film
+Animation film
+Stop-motion
+Pixar
+Studio Ghibli
+Auteur theory
+Film noir
+New Wave cinema
+Italian Neorealism
+French New Wave
+Dogme 95
+Bollywood
+Nollywood
+Film adaptation
+Cinematography
+Film editing
+Sound design
+Foley art
+Film score
+Orchestration
+Musicology
+Ethnomusicology
+Music theory
+Counterpoint
+Harmony
+Melody
+Rhythm
+Jazz improvisation
+Blues
+Rock music
+Heavy metal
+Psychedelic rock
+Progressive rock
+Funk
+Disco
+Hip hop
+Techno
+House music
+Trance
+Dubstep
+Ambient music
+Classical music
+Baroque music
+Renaissance music
+Medieval music
+Gregorian chant
+Opera
+Oratorio
+Ballet
+Contemporary dance
+Modern dance
+Hip hop dance
+Tap dance
+Salsa
+Flamenco
+Tango
+World music
+Reggae
+Ska
+Folk music
+Bluegrass
+Country music
+Singer-songwriter
+Choral music
+Wind ensemble
+Brass band
+Marching band
+Carnatic music
+Hindustani classical music
+Gamelan
+K-pop
+J-pop
+C-pop
+Bolero
+Samba
+Bossa nova
+Flamenco guitar
+Classical guitar
+Electric guitar
+Bass guitar
+Drum kit
+Percussion
+Orchestra
+Symphony
+Concerto
+String quartet
+Chamber music
+Music festival
+Live concert
+Sound system
+Audio engineering
+Recording studio
+Mixing console
+Mastering
+Analog synthesizer
+Modular synth
+Drum machine
+DJing
+Turntablism
+Sampling
+Lo-fi
+Chiptune
+Game music
+Film score composition
+Soundtrack
+Radio drama
+Podcast
+Audiobook
+Oral history
+Interview transcript
+Parliamentary debate
+Legal transcript
+Focus group transcript
+Customer service chat
+Live chat logs
+Instant messaging logs
+Forum discussions
+Reddit threads
+Twitter conversations
+Twitter threads
+IRC logs
+Discord chat logs
+WhatsApp conversations
+Telegram groups
+SMS transcripts
+Email threads
+Academic discussion
+Panel discussion
+Roundtable discussion
+Town hall meeting
+Press conference transcript
+Lecture transcript
+Seminar transcript
+Workshop transcript
+Training session transcript
+Courtroom transcript
+Witness testimony
+Deposition transcript
+Parliamentary proceedings
+Congressional hearing
+United Nations debates
+European Parliament debates
+Oxford Union debates
+Lincoln–Douglas debates
+Presidential debate transcript
+Political speech transcript
+Keynote address
+TED Talk transcript
+Town hall Q\&A
+Panel Q\&A
+Press Q\&A
+FAQ page
+Support ticket transcript
+Customer feedback
+User review
+Product review
+Survey responses
+Questionnaire responses
+Interview questions
+Exit interview transcript
+Employee feedback
+Performance review transcript
+Coaching session transcript
+Therapy session transcript
+Counseling session transcript
+Medical consultation transcript
+Therapeutic dialogue
+Philosophical dialogue
+Socratic dialogues
+Plato’s dialogues
+Aristotle’s dialogues
+Cicero’s dialogues
+Confucian dialogues
+Zen koan
+Zen dialogue
+Taoist dialogue
+Buddhist dialogue
+Religious dialogue
+Ecumenical dialogue
+Interfaith dialogue
+Intercultural dialogue
+Diplomatic negotiations
+Peace talks transcript
+Trade negotiation transcript
+Labor negotiation transcript
+Union negotiation transcript
+Business negotiation transcript
+Sales call transcript
+Telemarketing script
+Customer onboarding script
+Product demo script
+Training video script
+E-learning script
+Instructional design script
+Technical documentation
+User manual
+API documentation
+Developer documentation
+Software requirements specification
+System design document
+Architecture document
+Design patterns
+UML diagrams
+Flowchart
+Data flow diagram
+Entity–relationship diagram
+Class diagram
+Sequence diagram
+State machine diagram
+Activity diagram
+Use case diagram
+BPMN
+Process mapping
+Lean process
+Six Sigma
+Kaizen
+Agile methodology
+Scrum
+Kanban
+DevOps
+CI/CD pipeline
+Continuous integration
+Continuous delivery
+Continuous deployment
+Infrastructure as code
+Dockerfile
+Kubernetes manifest
+Terraform script
+Ansible playbook
+Chef recipe
+Puppet manifest
+Jenkins pipeline
+Git workflow
+Git branching strategies
+Git commit conventions
+Semantic versioning
+Release notes
+Changelog
+API versioning
+RESTful API
+GraphQL API
+gRPC
+WebSocket
+SSE (Server-Sent Events)
+OAuth 2.0
+OpenID Connect
+JWT (JSON Web Token)
+SAML (Security Assertion Markup Language)
+LDAP
+Active Directory
+Single sign-on
+Multi-factor authentication
+TLS handshake
+SSL certificate
+Public key infrastructure
+SSH key
+VPN configuration
+Network topology
+LAN
+WAN
+SDN (Software-Defined Networking)
+NFV (Network Functions Virtualization)
+5G network
+6G research
+IoT (Internet of Things)
+Edge computing
+Fog computing
+Cloud computing
+Serverless computing
+Microservices architecture
+Monolithic architecture
+Service-oriented architecture
+REST architecture
+Event-driven architecture
+Message queue
+Kafka
+RabbitMQ
+MQTT
+CoAP
+AMQP
+ZeroMQ
+Redis
+Memcached
+Database schema
+Relational database
+NoSQL database
+Document database
+Key-value store
+Graph database
+Time-series database
+NewSQL
+In-memory database
+Distributed database
+CAP theorem
+ACID
+BASE
+OLTP vs OLAP
+Data warehouse
+Data lake
+ETL pipeline
+ELT pipeline
+Data pipeline
+Data mesh
+Data fabric
+Big data
+Hadoop
+Spark
+Flink
+Storm
+Kafka Streams
+Beam
+Presto
+Trino
+Druid
+ClickHouse
+Elasticsearch
+Logstash
+Kibana
+Grafana
+Prometheus
+Time-series analysis
+Machine learning
+Supervised learning
+Unsupervised learning
+Reinforcement learning
+Deep learning
+Neural network
+Convolutional neural network
+Recurrent neural network
+Transformer
+BERT
+GPT
+Autoencoder
+GAN (Generative Adversarial Network)
+Variational autoencoder
+Graph neural network
+Meta-learning
+Few-shot learning
+Zero-shot learning
+Transfer learning
+Federated learning
+Online learning
+Batch learning
+Active learning
+Semi-supervised learning
+Self-supervised learning
+Multi-task learning
+Ensemble learning
+Random forest
+Gradient boosting
+XGBoost
+LightGBM
+CatBoost
+Support vector machine
+K-nearest neighbors
+Naive Bayes
+Logistic regression
+Linear regression
+Decision tree
+K-means clustering
+DBSCAN
+Hierarchical clustering
+Principal component analysis
+t-SNE
+UMAP
+Latent Dirichlet Allocation
+Topic modeling
+Natural language processing
+Tokenization
+Stemming
+Lemmatization
+POS tagging
+Named entity recognition
+Dependency parsing
+Constituency parsing
+Coreference resolution
+Sentiment analysis
+Machine translation
+Speech recognition
+Text-to-speech
+Question answering
+Summarization
+Information retrieval
+Search engine
+Elastic search
+Solr
+Ranking algorithms
+PageRank
+TF-IDF
+BM25
+Recommender system
+Collaborative filtering
+Content-based filtering
+Hybrid recommender
+Graph-based recommender
+Session-based recommender
+Knowledge graph
+Ontology
+Semantic web
+RDF (Resource Description Framework)
+OWL (Web Ontology Language)
+SPARQL
+Linked data
+Wikidata
+DBpedia
+Schema.org
+Microformats
+JSON-LD
+Microdata
+HTML5
+CSS3
+JavaScript
+TypeScript
+React
+Vue.js
+Angular
+Svelte
+Next.js
+Nuxt.js
+Gatsby
+Remix
+Ember.js
+Backbone.js
+jQuery
+D3.js
+Three.js
+Canvas API
+WebGL
+WebAssembly
+Progressive web app
+Service worker
+Web performance optimization
+Accessibility
+Internationalization
+Localization
+SEO (Search Engine Optimization)
+Web security
+CORS
+CSRF
+XSS
+SQL injection
+Clickjacking
+Content Security Policy
+HTTP/2
+HTTP/3
+QUIC
+TCP/IP
+UDP
+ICMP
+BGP
+OSPF
+RIP
+MPLS
+VPN protocol
+WireGuard
+OpenVPN
+IPsec
+FTPS
+SFTP
+SMB
+NFS
+CIFS
+SSH
+Telnet
+Bluetooth
+Zigbee
+Z-Wave
+LoRaWAN
+NB-IoT
+Sigfox
+RFID
+NFC
+GPS
+GLONASS
+Galileo
+BeiDou
+GNSS
+SLAM (Simultaneous Localization and Mapping)
+Computer vision
+Image classification
+Object detection
+Semantic segmentation
+Instance segmentation
+Pose estimation
+Optical character recognition
+Facial recognition
+Image generation
+Style transfer
+Super-resolution
+3D reconstruction
+Augmented reality
+Virtual reality
+Mixed reality
+Extended reality
+XR
+Haptics
+Tactile feedback
+Brain–computer interface
+Neuroprosthetics
+EEG
+fMRI
+MEG
+BCI paradigms
+Neuralink
+Kernel methods
+Manifold learning
+Dimensionality reduction
+Covariance matrix
+Eigen decomposition
+Singular value decomposition
+Fourier transform
+Wavelet transform
+Signal processing
+Digital signal processing
+Analog signal processing
+Filter design
+Control systems
+PID controller
+State-space model
+Frequency response
+Bode plot
+Nyquist plot
+Root locus
+Stability analysis
+Robotics
+Industrial robot
+Service robot
+Humanoid robot
+Cobots
+Swarm robotics
+Soft robotics
+Telerobotics
+Robot kinematics
+Robot dynamics
+Motion planning
+SLAM
+ROS (Robot Operating System)
+ROS 2
+Gazebo Simulator
+Webots
+V-REP
+MATLAB
+Simulink
+LabVIEW
+Arduino
+Raspberry Pi
+BeagleBone
+FPGA
+VHDL
+Verilog
+SystemVerilog
+ASIC design
+PCB design
+KiCad
+EAGLE
+Altium Designer
+Circuit simulation
+SPICE
+LTspice
+Multisim
+Proteus
+Embedded systems
+Real-time operating system
+FreeRTOS
+Zephyr OS
+Embedded Linux
+Yocto Project
+Buildroot
+U-Boot
+Bare-metal programming
+Interrupt handling
+DMA
+Microcontroller
+Microprocessor
+System-on-chip
+ARM Cortex
+RISC-V
+MIPS
+PowerPC
+x86 architecture
+x86-64
+BIOS
+UEFI
+Kernel
+Device driver
+Filesystem
+NTFS
+FAT32
+EXT4
+Btrfs
+XFS
+ZFS
+Hierarchical storage management
+RAID levels
+Software RAID
+Hardware RAID
+Networking stack
+Socket programming
+Winsock
+BSD sockets
+Zero-copy
+Memory management
+Virtual memory
+Paging
+Segmentation
+Garbage collection
+Reference counting
+Mark-and-sweep
+Copying collector
+Generational GC
+Tracing GC
+Concurrent GC
+Real-time GC
+JVM internals
+CLR internals
+Garbage-first GC
+Erlang VM
+BEAM
+Actor model
+Message passing concurrency
+Shared memory concurrency
+Locks
+Mutex
+Semaphore
+Monitor
+Condition variable
+Lock-free programming
+Wait-free programming
+Transactional memory
+Thread pool
+Fork-join
+MapReduce
+Bulk synchronous parallel
+MPI
+OpenMP
+CUDA
+OpenCL
+Vulkan
+DirectX
+Metal
+Graphics pipeline
+Rasterization
+Ray tracing
+Path tracing
+Global illumination
+PBR (Physically Based Rendering)
+Shader programming
+GLSL
+HLSL
+SPIR-V
+Compute shader
+Vertex shader
+Fragment shader
+Geometry shader
+Tessellation shader
+Mesh shader
+Ray-generation shader
+Intersection shader
+Any-hit shader
+Closest-hit shader
+Miss shader
+Ray-tracing pipeline
+GPUs
+TPUs
+NPUs
+Cloud GPU
+Distributed training
+Sparsity
+Quantization
+Pruning
+Knowledge distillation
+Model compression
+Edge AI
+TinyML
+Micro AI
+AutoML
+Neural architecture search
+Hyperparameter tuning
+Bayesian optimization
+Grid search
+Random search
+Evolutionary algorithm
+Genetic algorithm
+Particle swarm optimization
+Simulated annealing
+Gradient-based optimization
+Adam optimizer
+RMSprop optimizer
+SGD optimizer
+Learning rate schedule
+Warmup
+Cosine annealing
+Cyclical learning rate
+Early stopping
+Gradient clipping
+Batch normalization
+Layer normalization
+Dropout
+Attention mechanism
+Self-attention
+Multi-head attention
+Transformer encoder
+Transformer decoder
+Seq2Seq model
+Pointer network
+Memory network
+Neural Turing machine
+Differentiable neural computer
+Capsule network
+Hypernetwork
+Graph attention network
+Relational graph convolution
+Knowledge tracing
+Educational data mining
+Learning analytics
+Intelligent tutoring system
+ALEKS
+Khan Academy
+Coursera
+edX
+Udacity
+MOOC
+Micro-credential
+Digital badge
+ePortfolio
+Learning management system
+Moodle
+Canvas LMS
+Blackboard
+SCORM
+xAPI
+Tin Can API
+eLearning authoring tool
+Articulate Storyline
+Adobe Captivate
+Lectora
+Camtasia
+ScreenFlow
+OBS Studio
+XSplit
+Wirecast
+vMix
+Video encoding
+H.264
+H.265
+VP9
+AV1
+Multipath streaming
+Adaptive bitrate streaming
+DASH
+HLS
+Smooth Streaming
+RTMP
+WebRTC
+Video conferencing
+Zoom
+Teams
+WebEx
+Google Meet
+Jitsi
+BigBlueButton
+Multipoint Control Unit
+Selective Forwarding Unit
+SFU
+MCU
+SFU vs MCU
+Video codec
+Audio codec
+Opus
+AAC
+Vorbis
+FLAC
+WAV
+AI ethics
+Fairness
+Bias mitigation
+Explainable AI
+Interpretable models
+Model auditing
+Algorithmic accountability
+Privacy-preserving ML
+Differential privacy
+Homomorphic encryption
+Secure multiparty computation
+Federated analytics
+Synthetic data
+Data anonymization
+K-anonymity
+L-diversity
+T-closeness
+GDPR
+CCPA
+HIPAA
+FERPA
+COPPA
+PDPA
+GLBA
+AI governance
+Model lifecycle management
+MLOps
+DataOps
+AIOps
+Model registry
+Feature store
+Pipeline orchestration
+Airflow
+Kubeflow
+MLflow
+Metaflow
+Feast
+Seldon
+BentoML
+TorchServe
+TF Serving
+AWS SageMaker
+Azure ML
+Google AI Platform
+Vertex AI
+Cognitive Services
+AutoML Tables
+Dialogflow
+Rasa
+Botpress
+Microsoft Bot Framework
+IBM Watson Assistant
+Amazon Lex
+Voiceflow
+Twilio Flex
+Five9
+Genesys Cloud
+Zendesk Chat
+Intercom
+Drift
+LivePerson
+AI chatbot
+Rule-based chatbot
+Retrieval-based chatbot
+Generative chatbot
+Hybrid chatbot
+Seq2Seq chatbot
+Transformer chatbot
+RAG (Retrieval-Augmented Generation)
+Vector database
+Pinecone
+Weaviate
+Milvus
+Qdrant
+Chroma
+Redisearch
+Elasticsearch vector search
+FAISS
+Annoy
+HNSW
+IVF
+PQ
+OPQ
+LSH
+Clustering
+Subvector quantization
+Compression
+Approximate nearest neighbor
+Exact nearest neighbor
