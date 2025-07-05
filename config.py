@@ -1,6 +1,7 @@
 # config.py
 
 import os
+import logging # Import logging
 
 # --- Directory Paths ---
 DATA_DIR = "data"
@@ -32,19 +33,33 @@ VECTOR_DIMENSION = 384  # Based on the chosen embedding model
 
 # --- Learning & Classification Settings ---
 CONFIDENCE_THRESHOLD = 0.85  # Threshold for auto-labeling new data
+MIN_CONFIDENCE_TO_AUTO_LABEL = 0.95 # This was previously defined in autonomous_learn.py, but now centralized here
 
 # --- Harvester Settings ---
 HARVESTER_BLACKLISTED_DOMAINS = {
-    'youtube.com', 'facebook.com', 'twitter.com', 'instagram.com', 'reddit.com', 'amazon.com',
+    'facebook.com', 'twitter.com', 'instagram.com', 'reddit.com', 'amazon.com',
     'linkedin.com', 'pinterest.com', 'tiktok.com', 'wikipedia.org', 'forbes.com', 'quora.com',
-    'stackoverflow.com', 'medium.com', 'github.com', 'google.com', 'microsoft.com', 'apple.com',
-    'telegram.org', 'discord.com', 'archive.org', 'slideshare.net', 'scribd.com', 'researchgate.net',
-    'cnet.com', 'techcrunch.com', 'wired.com', 'arstechnica.com', 'imdb.com', 'rottentomatoes.com'
+    'stackoverflow.com', 'medium.com', 'github.com', 'google.com',
+    'youtube.com', 'wikipedia.org' # Added wikipedia.org as it was present in get_wikipedia_urls.py logic
 }
-
 HARVESTER_BLACKLISTED_EXTENSIONS = {
-    '.pdf', '.jpg', '.jpeg', '.png', '.gif', '.zip', '.rar', '.exe', '.mp3',
-    '.mp4', '.avi', '.mov', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx'
+    '.pdf', '.zip', '.mp3', '.mp4', '.avi', '.mov', '.jpg', '.jpeg', '.png', '.gif', '.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx'
 }
+HARVESTER_MIN_CONTENT_WORDS = 50 # Minimum words for an article to be considered valid
 
-HARVESTER_MIN_CONTENT_WORDS = 200
+# --- Autonomous Operation Settings ---
+AUTONOMOUS_RUN_INTERVAL_SECONDS = 3600 # Run every hour (3600 seconds)
+AUTONOMOUS_LOG_FILE = os.path.join(DATA_DIR, "autonomous_run.log")
+
+# --- Logging Configuration ---
+# Set up basic logging. This will capture logs from all modules.
+# You can customize format, level, and handlers (e.g., to file, console, both)
+logging.basicConfig(
+    level=logging.INFO, # Default logging level
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(AUTONOMOUS_LOG_FILE), # Log to a file
+        logging.StreamHandler() # Also log to console
+    ]
+)
+logger = logging.getLogger(__name__) # Get a logger for this module

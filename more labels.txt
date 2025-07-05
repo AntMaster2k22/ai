@@ -1,0 +1,24 @@
+Art & Culture
+
+Economics & Finance
+
+Health & Medicine
+
+History
+
+Philosophy & Religion
+
+Science & Research
+
+Sports & Recreation
+
+Technology & Computing
+
+Law & Governance
+
+Education & Learning
+
+Communication & Media
+
+Engineering & Robotics
+total=20

@@ -30,13 +30,31 @@ def is_valid_link(url):
 def validate_content(url):
     try:
         payload = {'api_key': SCRAPER_API_KEY, 'url': url}
-        downloaded = requests.get('http://api.scraperapi.com', params=payload, timeout=60).text
+        # Increased timeout and added specific exception handling
+        response = requests.get('http://api.scraperapi.com', params=payload, timeout=90) # Increased timeout
+        response.raise_for_status() # Raise HTTPError for bad responses (4xx or 5xx)
+        downloaded = response.text
         if not downloaded:
+            print(f"[x] No content downloaded for {url}.") # More specific feedback
             return False
         content = extract(downloaded, include_comments=False, include_tables=False, with_metadata=False)
         return content and len(content.split()) >= HARVESTER_MIN_CONTENT_WORDS
-    except Exception:
+    except requests.exceptions.Timeout:
+        print(f"[x] Timeout occurred while validating content from {url}.")
         return False
+    except requests.exceptions.HTTPError as e:
+        print(f"[x] HTTP Error {e.response.status_code} while validating content from {url}: {e}")
+        return False
+    except requests.exceptions.ConnectionError:
+        print(f"[x] Connection Error while validating content from {url}. Check internet connection or URL.")
+        return False
+    except requests.exceptions.RequestException as e:
+        print(f"[x] An unknown Request Error occurred while validating content from {url}: {e}")
+        return False
+    except Exception as e: # Catch any other unexpected errors during extraction or processing
+        print(f"[x] An unexpected error occurred during content validation for {url}: {e}")
+        return False
+
 
 # --- MULTI-API CONFIG & RATE LIMITING (only ScraperAPI active) ---
 APIS = [
@@ -58,11 +76,20 @@ def api_search(target_url):
             time.sleep(wait)
         try:
             payload = {'api_key': api['key'], 'url': target_url}
-            resp = requests.get(api['url'], params=payload, timeout=60)
-            resp.raise_for_status()
+            # Increased timeout and added specific exception handling
+            resp = requests.get(api['url'], params=payload, timeout=90) # Increased timeout
+            resp.raise_for_status() # Raise HTTPError for bad responses (4xx or 5xx)
             html_responses.append(resp.text)
+        except requests.exceptions.Timeout:
+            print(f"[x] {api['name']} Request Timed Out for {target_url}.")
+        except requests.exceptions.HTTPError as e:
+            print(f"[x] {api['name']} HTTP Error {e.response.status_code} for {target_url}: {e}")
+        except requests.exceptions.ConnectionError:
+            print(f"[x] {api['name']} Connection Error for {target_url}. Check internet connection or API status.")
         except requests.exceptions.RequestException as e:
-            print(f"[x] {api['name']} Request Failed: {e}")
+            print(f"[x] {api['name']} An unknown Request Error occurred for {target_url}: {e}")
+        except Exception as e: # Catch any other unexpected errors
+            print(f"[x] {api['name']} An unexpected error occurred for {target_url}: {e}")
         finally:
             _next_request_time[api['name']] = time.time() + _rate_limit_interval
     return html_responses
@@ -82,11 +109,16 @@ def search_topic(topic):
         target = engine['url'](query)
         html_list = api_search(target)
         for html in html_list:
-            if not html:
+            if not html: # Ensure html is not empty or None
+                print(f"[x] Received empty HTML response from {engine['name']} for topic '{topic}'.")
                 continue
-            soup = BeautifulSoup(html, 'lxml')
-            links = {a.get('href') for a in soup.select(engine['link_selector']) if a.get('href')}
-            all_links.update({link for link in links if is_valid_link(link)})
+            try:
+                soup = BeautifulSoup(html, 'lxml')
+                links = {a.get('href') for a in soup.select(engine['link_selector']) if a.get('href')}
+                all_links.update({link for link in links if is_valid_link(link)})
+            except Exception as e:
+                print(f"[x] Error parsing HTML from {engine['name']} for topic '{topic}': {e}")
+
 
     if all_links:
         print(f"[+] Found {len(all_links)} potential links for '{topic}'")
