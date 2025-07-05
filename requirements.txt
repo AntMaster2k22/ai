@@ -10,3 +10,6 @@ trafilatura
 pyarrow
 google-generativeai
 lxml
+selenium
+webdriver-manager
+requests-html

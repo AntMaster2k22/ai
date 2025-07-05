@@ -1,109 +1,96 @@
 import pandas as pd
-import numpy as np
-import sys
 import os
 import requests
-import re
 from bs4 import BeautifulSoup
+import time
 
 # --- Project Imports ---
-from config import LABELED_DATA_CSV, AUTO_LABELED_CSV
+from config import AUTO_LABELED_CSV
 from my_scraper import scrape_text_from_url
-from model import load_pipeline
+from model import predict_with_confidence # CORRECTED IMPORT
 from learn import train_model
 
 # --- Configuration for Autonomous Mode ---
-# The AI will only auto-label if its confidence is above this threshold.
-# Start high (0.95) to ensure high quality. You can lower it as the AI gets smarter.
 MIN_CONFIDENCE_TO_AUTO_LABEL = 0.95
 
-def get_best_prediction(pipeline, text):
-    """Gets the single best prediction and its confidence score."""
-    try:
-        probs = pipeline.predict_proba([text])[0]
-        confidence = np.max(probs)
-        prediction = pipeline.classes_[np.argmax(probs)]
-    except AttributeError:
-        decision_values = pipeline.decision_function([text])[0]
-        prediction = pipeline.predict([text])[0]
-        # Normalize for a confidence score
-        if (decision_values.max() - decision_values.min()) > 0:
-            confidence = (np.max(decision_values) - decision_values.min()) / (decision_values.max() - decision_values.min())
-        else:
-            confidence = 1.0
-    return prediction, confidence
-
 def find_wiki_links(topic):
-    """Finds related Wikipedia links from a topic page."""
-    search_url = f"https://en.wikipedia.org/wiki/{topic.replace(' ', '_')}"
+    """Finds related Wikipedia links for a given topic."""
+    print(f"\n[*] Searching for related articles on Wikipedia for topic: '{topic}'...")
     try:
+        search_url = f"https://en.wikipedia.org/w/index.php?search={topic.replace('_', '+')}"
         response = requests.get(search_url, timeout=10)
         response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'lxml')
-        content_div = soup.find(id="mw-content-text")
-        if not content_div: return [search_url]
-        links = {f"https://en.wikipedia.org{a['href']}" for a in content_div.find_all('a', href=True) if a['href'].startswith('/wiki/') and ':' not in a['href']}
-        print(f"[*] Found {len(links)} potential articles related to '{topic}'.")
-        return list(links) if links else [search_url]
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        links = set()
+        # Find links within the main content area
+        for a in soup.select('div.mw-search-result-heading a, ul li a'):
+            href = a.get('href')
+            if href and href.startswith('/wiki/') and ':' not in href:
+                links.add(f"https://en.wikipedia.org{href}")
+        
+        print(f"[+] Found {len(links)} potential articles.")
+        return list(links)[:15] # Limit to 15 to keep sessions manageable
     except requests.RequestException as e:
-        print(f"[!] Could not fetch Wikipedia page for '{topic}': {e}")
+        print(f"[!] Could not fetch Wikipedia links: {e}")
         return []
 
 def run_autonomous_session():
     """
-    An autonomous workflow for the AI to learn on its own.
-    It finds, scrapes, and labels articles without user intervention,
-    using a confidence threshold as a safety measure.
+    An autonomous session where the AI finds and learns from new articles.
     """
-    print("\n--- 🤖 Autonomous Learning Mode ---")
+    print("\n--- 🤖 Autonomous Learning Session ---")
     
-    try:
-        pipeline = load_pipeline()
-        print("[*] Model loaded successfully.")
-    except Exception as e:
-        print(f"[!] Failed to load model: {e}. Please run learn.py first.")
+    # 1. Get existing labels from the model
+    from model import model_pipeline
+    if not model_pipeline.pipeline:
+        print("[!] Model not loaded. Please train a model first.")
         return
-
-    main_topic = input("Enter a broad starting topic for the AI to explore (e.g., 'History of science'): ")
-    if not main_topic:
-        return
-
-    urls_to_process = find_wiki_links(main_topic)
+        
+    existing_labels = model_pipeline.pipeline.classes_
+    print(f"[*] Current knowledge topics: {', '.join(existing_labels)}")
+    
+    # 2. Find new URLs to process
+    urls_to_process = []
+    for label in existing_labels:
+        urls_to_process.extend(find_wiki_links(label))
+        time.sleep(1) # Be respectful to Wikipedia's servers
+    
     if not urls_to_process:
+        print("[!] Could not find any new articles to learn from.")
         return
-
-    print(f"[*] The AI will now process {len(urls_to_process)} articles.")
+        
+    print(f"\n[*] AI will now attempt to learn from {len(urls_to_process)} articles.")
     print(f"[*] It will only save new data if its confidence is above {MIN_CONFIDENCE_TO_AUTO_LABEL * 100}%.")
 
-    newly_labeled_data = []
+    newly_labeled_count = 0
     for i, url in enumerate(urls_to_process):
-        # Basic progress indicator
-        print(f"\r[*] Processing article {i+1}/{len(urls_to_process)}...", end="")
+        print(f"\r[*] Processing article {i+1}/{len(urls_to_process)}: {url[:70]}...", end="")
         
-        text = scrape_text_from_url(url, silent=True) # Run scraper in silent mode
+        text = scrape_text_from_url(url, silent=True)
         if not text or len(text) < 500: # Skip short articles
             continue
 
-        prediction, confidence = get_best_prediction(pipeline, text)
+        # Use the corrected, globally accessible function
+        prediction, confidence = predict_with_confidence(text)
 
         if confidence >= MIN_CONFIDENCE_TO_AUTO_LABEL:
-            snippet_to_save = '"' + text.replace('"', '""') + '"'
-            newly_labeled_data.append({'text': snippet_to_save, 'label': prediction})
+            from model import maybe_auto_label
+            maybe_auto_label(text, prediction, confidence)
+            newly_labeled_count += 1
     
     print("\n--- Autonomous Session Complete ---")
 
-    if not newly_labeled_data:
+    if newly_labeled_count == 0:
         print("[*] The AI didn't find any new information it was confident enough to add.")
         return
 
-    print(f"✅ The AI autonomously identified and labeled {len(newly_labeled_data)} new articles.")
+    print(f"✅ The AI autonomously identified and labeled {newly_labeled_count} new articles.")
     
-    # Save the high-confidence data to the auto-labeled file
-    new_df = pd.DataFrame(newly_labeled_data)
-    new_df.to_csv(AUTO_LABELED_CSV, mode='a', header=not os.path.exists(AUTO_LABELED_CSV), index=False)
-
-    print(f"[*] This new data has been saved to '{AUTO_LABELED_CSV}'.")
-    print("[*] You can run the 'Curation Mode' or 'learn.py' to merge it and retrain the model.")
-    
-if __name__ == "__main__":
-    run_autonomous_session()
+    retrain_choice = input("Would you like to merge this new data and retrain the model now? (y/n): ").lower()
+    if retrain_choice == 'y':
+        from merge_labeledcsv import merge_files
+        print("\n[*] Merging auto-labeled data...")
+        merge_files()
+        print("\n[*] Retraining model...")
+        train_model()
